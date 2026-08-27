@@ -1,0 +1,6 @@
+asset_id,cse_id,classification,asset_type,sector
+SCADA-RTU-01,CSE-02,CRITICAL,SCADA / OT,Energy
+SUBSTATION-GW-02,CSE-02,CRITICAL,Network,Energy
+ENERGY-EMS-SRV,CSE-02,CRITICAL,Server,Energy
+GRID-MONITOR-03,CSE-02,HIGH,Server,Energy
+CORP-FW-02,CSE-02,MEDIUM,Firewall,Energy

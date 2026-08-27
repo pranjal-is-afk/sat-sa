@@ -1,0 +1,6 @@
+asset_id,cse_id,classification,asset_type,sector
+WEB-SERVER-01,CSE-01,HIGH,Server,Banking
+DB-SERVER-01,CSE-01,CRITICAL,Database,Banking
+FIREWALL-01,CSE-01,CRITICAL,Firewall,Banking
+ENDPOINT-01,CSE-01,MEDIUM,Endpoint,Banking
+ROUTER-01,CSE-01,HIGH,Network,Banking

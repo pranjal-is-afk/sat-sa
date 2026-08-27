@@ -1,0 +1,5 @@
+asset_id,cse_id,classification,asset_type,sector
+ID-GATEWAY-AUTH-01,CSE-09,CRITICAL,Server,Government
+CITIZEN-PORTAL-WEB,CSE-09,HIGH,Server,Government
+UID-VAULT-DB,CSE-09,CRITICAL,Database,Government
+GOV-SEC-FW-01,CSE-09,HIGH,Firewall,Government
