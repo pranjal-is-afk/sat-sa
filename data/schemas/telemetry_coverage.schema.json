@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TelemetryCoverageSchema",
+  "type": "object",
+  "required": ["asset_id", "cse_id", "period", "expected_event_volume", "observed_event_volume", "coverage_status"],
+  "properties": {
+    "asset_id": { "type": "string" },
+    "cse_id": { "type": "string" },
+    "period": { "type": "string" },
+    "expected_event_volume": { "type": "integer", "minimum": 0 },
+    "observed_event_volume": { "type": "integer", "minimum": 0 },
+    "last_seen_at": { "type": ["string", "null"], "format": "date-time" },
+    "coverage_status": { "type": "string", "enum": ["Active", "Intermittent", "Silent"] }
+  }
+}

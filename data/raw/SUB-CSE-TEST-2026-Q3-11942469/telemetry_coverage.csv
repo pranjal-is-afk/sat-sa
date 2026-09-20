@@ -1,0 +1,3 @@
+asset_id,cse_id,period,expected_event_volume,observed_event_volume,coverage_status
+AST-INT-1,CSE-TEST,2026-Q3,1000,1200,Active
+AST-SILENT-1,CSE-TEST,2026-Q3,1000,0,Silent

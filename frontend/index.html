@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAT-SA | Supervisory Analytics Tool for SOC Assessment (NCIIPC)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Executive Header -->
+  <header class="app-header">
+    <div class="brand-group">
+      <div class="brand-logo">SA</div>
+      <div>
+        <div class="brand-title">SAT-SA : Supervisory Analytics Tool for SOC Assessment</div>
+        <div class="brand-sub">National Critical Information Infrastructure Protection Centre (NCIIPC)</div>
+      </div>
+    </div>
+    <div class="header-status">
+      <div class="airgap-pill">
+        <div class="status-dot"></div>
+        AIR-GAPPED ENCLAVE SECURE
+      </div>
+      <button class="btn btn-secondary" onclick="reseedDemoData()">Reseed Ground Truth</button>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('portfolio')">Portfolio Overview</button>
+    <button class="nav-tab" onclick="switchTab('entity-profile')">Entity Deep Dive</button>
+    <button class="nav-tab" onclick="switchTab('review-queue')">Prioritized Review Queue</button>
+    <button class="nav-tab" onclick="switchTab('submissions')">Submissions & Quality</button>
+    <button class="nav-tab" onclick="switchTab('audit')">Cryptographic Audit Trail</button>
+    <button class="nav-tab" onclick="switchTab('reports')">Supervisory Reports</button>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="main-container">
+
+    <!-- TAB 1: PORTFOLIO OVERVIEW -->
+    <section id="tab-portfolio" class="tab-content active">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Critical Sector Entities</div>
+          <div class="kpi-val" id="kpi-cses">10</div>
+          <div class="kpi-desc">Tier-1 & Tier-2 critical infrastructure</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Alert Records Ingested</div>
+          <div class="kpi-val" id="kpi-alerts">--</div>
+          <div class="kpi-desc">Periodic SOC metadata submissions</div>
+        </div>
+        <div class="kpi-card danger">
+          <div class="kpi-title">Identified Execution Gaps</div>
+          <div class="kpi-val" id="kpi-gaps">--</div>
+          <div class="kpi-desc">Fast closures, unescalated breaches</div>
+        </div>
+        <div class="kpi-card warning">
+          <div class="kpi-title">Negative-Space Gaps</div>
+          <div class="kpi-val" id="kpi-negative">--</div>
+          <div class="kpi-desc">Silent critical assets with 0 telemetry</div>
+        </div>
+        <div class="kpi-card success">
+          <div class="kpi-title">Pending Review Queue</div>
+          <div class="kpi-val" id="kpi-queue">--</div>
+          <div class="kpi-desc">Prioritized for manual examiner review</div>
+        </div>
+      </div>
+
+      <div class="card-table">
+        <div class="table-header">
+          <div class="table-title">National Critical Infrastructure Entity Ranking</div>
+          <button class="btn btn-outline" onclick="loadEntityRanking()">Refresh Leaderboard</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Entity Identifier</th>
+              <th>Organization</th>
+              <th>Sector</th>
+              <th>Tier</th>
+              <th>Supervisory Risk Score</th>
+              <th>Key Contributor Breakdown</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ranking-table-body">
+            <tr><td colspan="8" style="text-align: center; color: var(--text-muted);">Loading entity leaderboard...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 2: ENTITY DEEP DIVE -->
+    <section id="tab-entity-profile" class="tab-content">
+      <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+        <select id="entity-selector" class="form-control" style="max-width: 350px;" onchange="loadEntityDeepDive(this.value)">
+          <option value="CSE-04">CSE-04 : National Freight Rail Dispatch (Transport)</option>
+          <option value="CSE-07">CSE-07 : Trans-National Petroleum Pipeline (Oil & Gas)</option>
+          <option value="CSE-03">CSE-03 : National Telecom Backbone (Telecom)</option>
+          <option value="CSE-05">CSE-05 : Strategic Defense Electronics (Defense)</option>
+          <option value="CSE-06">CSE-06 : Kalpakkam Atomic Energy Station (Nuclear)</option>
+          <option value="CSE-01">CSE-01 : Northern Power Grid Corp (Energy)</option>
+          <option value="CSE-02">CSE-02 : Apex Federal Reserve Bank (Banking)</option>
+        </select>
+        <button class="btn" onclick="loadEntityDeepDive(document.getElementById('entity-selector').value)">Inspect Entity</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;">
+        <!-- Decomposed Risk Breakdown -->
+        <div class="kpi-card" style="padding: 20px;">
+          <h3 style="color: #fff; margin-bottom: 12px;">Supervisory Risk Decomposition: <span id="deep-score" style="color: var(--accent-red);">--/100</span></h3>
+          <p style="color: var(--text-secondary); font-size: 12px; margin-bottom: 16px;">
+            Formula: <code>R_entity = 0.20*D + 0.25*I + 0.25*E + 0.15*N + 0.10*P + 0.05*Q</code>
+          </p>
+          <div id="contributors-container">
+            <!-- Dynamic contributor bars -->
+          </div>
+        </div>
+
+        <!-- Sector Peer Comparison -->
+        <div class="kpi-card" style="padding: 20px;">
+          <h3 style="color: #fff; margin-bottom: 12px;">Peer Group Benchmark Comparison</h3>
+          <div id="peer-comparison-container" style="font-size: 13px; color: var(--text-secondary);">
+            Loading peer benchmark distribution...
+          </div>
+        </div>
+      </div>
+
+      <div class="card-table">
+        <div class="table-header">
+          <div class="table-title">Entity Specific Findings</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Finding ID</th>
+              <th>Severity</th>
+              <th>Category</th>
+              <th>Rationale</th>
+              <th>Rule</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="entity-findings-body">
+            <tr><td colspan="6" style="text-align: center;">Select an entity above.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 3: PRIORITIZED REVIEW QUEUE -->
+    <section id="tab-review-queue" class="tab-content">
+      <div style="display: flex; gap: 12px; margin-bottom: 16px; align-items: center; flex-wrap: wrap;">
+        <select id="filter-severity" class="form-control" style="width: 150px;" onchange="loadReviewQueue()">
+          <option value="">All Severities</option>
+          <option value="CRITICAL">Critical</option>
+          <option value="HIGH">High</option>
+          <option value="MEDIUM">Medium</option>
+        </select>
+        <select id="filter-category" class="form-control" style="width: 220px;" onchange="loadReviewQueue()">
+          <option value="">All Finding Categories</option>
+          <option value="Escalation Weakness">Escalation Weakness</option>
+          <option value="Negative Space">Negative Space</option>
+          <option value="Investigation Weakness">Investigation Weakness</option>
+          <option value="Remediation Weakness">Remediation Weakness</option>
+          <option value="Peer Deviation">Peer Deviation</option>
+          <option value="Operational Discipline">Operational Discipline</option>
+        </select>
+        <button class="btn btn-outline" onclick="loadReviewQueue()">Apply Filters</button>
+      </div>
+
+      <div class="card-table">
+        <div class="table-header">
+          <div class="table-title">Actionable Manual Review Queue (Ordered by Priority Score P_case)</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Priority</th>
+              <th>Entity</th>
+              <th>Severity</th>
+              <th>Category</th>
+              <th>Target Record</th>
+              <th>Supervisory Finding Summary</th>
+              <th>Confidence</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="queue-table-body">
+            <tr><td colspan="8" style="text-align: center;">Loading review queue...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 4: SUBMISSIONS & DATA QUALITY -->
+    <section id="tab-submissions" class="tab-content">
+      <div class="card-table" style="padding: 20px; margin-bottom: 20px;">
+        <h3 style="color: #fff; margin-bottom: 10px;">Periodic Submission Ingestion Interface</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 12px;">
+          Ingests CSV/JSON operational evidence packages. Immediately computes SHA-256 hashes for data provenance and evaluates DQ-001 through DQ-012 quality rules.
+        </p>
+        <div style="display: flex; gap: 16px; align-items: flex-end;">
+          <div style="flex: 1;">
+            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Target Entity</label>
+            <input type="text" id="upload-cse-id" class="form-control" value="CSE-04">
+          </div>
+          <div style="flex: 1;">
+            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Reporting Period</label>
+            <input type="text" id="upload-period" class="form-control" value="2026-Q3">
+          </div>
+          <div style="flex: 2;">
+            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 4px;">Select CSV / JSON Files</label>
+            <input type="file" id="upload-files" class="form-control" multiple>
+          </div>
+          <button class="btn" onclick="submitFiles()">Upload & Validate Batch</button>
+        </div>
+      </div>
+
+      <div class="card-table">
+        <div class="table-header">
+          <div class="table-title">Recent Ingestion Submissions</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Submission ID</th>
+              <th>Entity</th>
+              <th>Period</th>
+              <th>Uploaded At</th>
+              <th>Uploader</th>
+              <th>Files</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="submissions-table-body">
+            <tr><td colspan="7" style="text-align: center;">Loading submissions...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 5: CRYPTOGRAPHIC AUDIT TRAIL -->
+    <section id="tab-audit" class="tab-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <div>
+          <h3 style="color: #fff;">Immutable Append-Only Audit Trail</h3>
+          <p style="color: var(--text-secondary); font-size: 12px;">
+            Every human supervisor disposition and analytics run is cryptographically chained using SHA-256 state hashing.
+          </p>
+        </div>
+        <button class="btn btn-outline" onclick="verifyChainIntegrity()">Verify Cryptographic Chain Integrity</button>
+      </div>
+
+      <div id="integrity-banner" style="display: none; padding: 12px; border-radius: 6px; margin-bottom: 16px;"></div>
+
+      <div class="card-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Event ID</th>
+              <th>Timestamp (UTC)</th>
+              <th>Action</th>
+              <th>User ID</th>
+              <th>Previous State Hash</th>
+              <th>Current Event Hash</th>
+            </tr>
+          </thead>
+          <tbody id="audit-table-body">
+            <tr><td colspan="6" style="text-align: center;">Loading audit logs...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 6: SUPERVISORY REPORTS -->
+    <section id="tab-reports" class="tab-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div>
+          <h3 style="color: #fff;">Supervisory Cyber Resilience Assessment Reports</h3>
+          <p style="color: var(--text-secondary); font-size: 12px;">Official evidence-backed assessment summaries ready for regulatory briefing.</p>
+        </div>
+        <div style="display: flex; gap: 12px;">
+          <a href="/api/v1/reports/html" target="_blank" class="btn">Open Printable HTML Report</a>
+          <a href="/api/v1/reports/json" target="_blank" class="btn btn-secondary">Download JSON Evidence Pack</a>
+        </div>
+      </div>
+
+      <iframe src="/api/v1/reports/html" style="width: 100%; height: 600px; border: 1px solid var(--border-color); border-radius: 8px; background: #0b0f19;"></iframe>
+    </section>
+
+  </main>
+
+  <!-- FINDING DETAIL & EVIDENCE DRILL-DOWN MODAL DRAWER -->
+  <div id="finding-modal" class="modal-backdrop" onclick="closeFindingModal(event)">
+    <div class="modal-drawer" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+        <div>
+          <span id="drawer-category-badge" class="badge badge-critical" style="margin-bottom: 6px;">Category</span>
+          <h2 id="drawer-finding-id" style="color: #fff; font-size: 18px;">Finding ID</h2>
+          <div id="drawer-rule-version" style="font-size: 11px; color: var(--text-muted);">Rule Version</div>
+        </div>
+        <button class="modal-close" onclick="closeModalDirect()">&times;</button>
+      </div>
+
+      <!-- Plain Language Rationale -->
+      <div style="background: #0f172a; border-left: 4px solid var(--accent-cyan); padding: 12px; border-radius: 4px; margin-bottom: 16px;">
+        <div style="font-size: 11px; text-transform: uppercase; color: var(--accent-cyan); font-weight: 700; margin-bottom: 4px;">Supervisory Finding Rationale</div>
+        <div id="drawer-reason" style="font-size: 13px; color: #e2e8f0;">Rationale text...</div>
+      </div>
+
+      <!-- Evidence Table -->
+      <h4 style="color: #fff; margin-bottom: 8px;">Supporting Operational Evidence Records</h4>
+      <table style="margin-bottom: 16px;">
+        <thead>
+          <tr>
+            <th>Table</th>
+            <th>Record Key</th>
+            <th>Evaluated Field</th>
+            <th>Observed Value</th>
+          </tr>
+        </thead>
+        <tbody id="drawer-evidence-body">
+        </tbody>
+      </table>
+
+      <!-- Peer Baseline -->
+      <div style="background: #1e293b; padding: 10px; border-radius: 6px; margin-bottom: 16px; font-size: 12px;">
+        <strong>Peer Baseline: </strong> <span id="drawer-baseline" style="color: var(--text-secondary);">--</span>
+      </div>
+
+      <!-- Timeline -->
+      <h4 style="color: #fff; margin-bottom: 8px;">Incident Timeline Lifecycle</h4>
+      <div class="timeline" id="drawer-timeline">
+      </div>
+
+      <!-- Recommended Action -->
+      <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 10px; border-radius: 6px; margin-bottom: 20px; font-size: 12px; color: #fde047;">
+        <strong>Recommended Supervisory Action:</strong> <span id="drawer-action">--</span>
+      </div>
+
+      <!-- Human-in-the-Loop Review Disposition -->
+      <div style="border-top: 1px solid var(--border-color); padding-top: 16px; margin-top: auto;">
+        <h4 style="color: #fff; margin-bottom: 10px;">Record Supervisor Review Disposition</h4>
+        <div class="form-group">
+          <label>Decision Verdict</label>
+          <select id="disp-decision" class="form-control">
+            <option value="Confirmed">Confirmed Execution Gap</option>
+            <option value="Needs More Evidence">Needs More Evidence</option>
+            <option value="False Positive">False Positive / Legitimate Exception</option>
+            <option value="Remediation Required">Remediation Action Required from CSE</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Supervisor Review Notes & Instructions</label>
+          <textarea id="disp-comment" class="form-control" rows="3" placeholder="Input supervisory rationale (appended to immutable audit trail)..."></textarea>
+        </div>
+        <button class="btn" onclick="submitDisposition()" style="width: 100%; justify-content: center;">
+          Commit Disposition to Cryptographic Audit Trail
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

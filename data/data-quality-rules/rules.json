@@ -1,0 +1,86 @@
+[
+  {
+    "rule_id": "DQ-001",
+    "name": "Declared Entity Identifier Check",
+    "description": "Each uploaded file and record must contain a declared entity identifier (cse_id).",
+    "severity": "ERROR",
+    "action": "QUARANTINE_RECORD"
+  },
+  {
+    "rule_id": "DQ-002",
+    "name": "Alert Identifier Uniqueness",
+    "description": "Alert IDs must be globally unique within an entity and reporting period.",
+    "severity": "ERROR",
+    "action": "QUARANTINE_RECORD"
+  },
+  {
+    "rule_id": "DQ-003",
+    "name": "Closure Monotonicity",
+    "description": "closed_at cannot occur chronologically before created_at.",
+    "severity": "ERROR",
+    "action": "QUARANTINE_RECORD"
+  },
+  {
+    "rule_id": "DQ-004",
+    "name": "Acknowledgement Monotonicity",
+    "description": "acknowledged_at cannot occur chronologically before created_at.",
+    "severity": "WARNING",
+    "action": "FLAG_RECORD"
+  },
+  {
+    "rule_id": "DQ-005",
+    "name": "Case Referential Integrity",
+    "description": "Cases linked to alerts must resolve to existing alert records.",
+    "severity": "ERROR",
+    "action": "QUARANTINE_RECORD"
+  },
+  {
+    "rule_id": "DQ-006",
+    "name": "Escalation Referential Integrity",
+    "description": "Escalations linked to cases must reference existing valid cases.",
+    "severity": "ERROR",
+    "action": "QUARANTINE_RECORD"
+  },
+  {
+    "rule_id": "DQ-007",
+    "name": "Severity Value Validity",
+    "description": "Alert and case severities must be one of Critical, High, Medium, Low.",
+    "severity": "ERROR",
+    "action": "QUARANTINE_RECORD"
+  },
+  {
+    "rule_id": "DQ-008",
+    "name": "Asset Inventory Resolution",
+    "description": "Asset references in alerts must resolve to known assets in the entity inventory.",
+    "severity": "WARNING",
+    "action": "FLAG_RECORD"
+  },
+  {
+    "rule_id": "DQ-009",
+    "name": "Duplicate Record Deduplication",
+    "description": "Duplicate rows across alert or case records are flagged or merged.",
+    "severity": "WARNING",
+    "action": "FLAG_RECORD"
+  },
+  {
+    "rule_id": "DQ-010",
+    "name": "Malformed Record Isolation",
+    "description": "Unparseable timestamps and malformed columns must be quarantined.",
+    "severity": "ERROR",
+    "action": "QUARANTINE_RECORD"
+  },
+  {
+    "rule_id": "DQ-011",
+    "name": "Source File Provenance Preservation",
+    "description": "Source file SHA-256 hash and upload metadata must be computed and retained.",
+    "severity": "ERROR",
+    "action": "HALT_BATCH"
+  },
+  {
+    "rule_id": "DQ-012",
+    "name": "Reporting Completeness Audit",
+    "description": "System evaluates expected mandatory field completeness across all tables.",
+    "severity": "WARNING",
+    "action": "SCORE_PENALTY"
+  }
+]

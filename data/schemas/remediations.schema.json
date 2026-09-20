@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RemediationSchema",
+  "type": "object",
+  "required": ["remediation_id", "asset_id", "vulnerability_or_root_cause", "action_plan", "status"],
+  "properties": {
+    "remediation_id": { "type": "string" },
+    "asset_id": { "type": "string" },
+    "case_id": { "type": ["string", "null"] },
+    "vulnerability_or_root_cause": { "type": "string" },
+    "action_plan": { "type": "string" },
+    "status": { "type": "string", "enum": ["Planned", "In_Progress", "Completed", "Overdue"] },
+    "due_date": { "type": ["string", "null"], "format": "date" }
+  }
+}

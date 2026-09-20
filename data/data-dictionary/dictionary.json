@@ -1,0 +1,46 @@
+{
+  "project": "SAT-SA",
+  "version": "1.0.0",
+  "entities": {
+    "alerts": {
+      "description": "Raw or normalized security alert records from entity SOC tooling.",
+      "classification": "Confidential",
+      "fields": {
+        "alert_id": "Primary unique key for the alert event.",
+        "cse_id": "Submitting Critical Sector Entity unique code.",
+        "created_at": "UTC ISO-8601 timestamp when detection occurred.",
+        "acknowledged_at": "Timestamp when analyst opened or acknowledged the alert.",
+        "closed_at": "Timestamp when alert reached final disposition.",
+        "severity": "Threat severity rating: Critical, High, Medium, or Low.",
+        "alert_category": "Taxonomy tag: Malware, Identity, Lateral Movement, Data Exfiltration, etc.",
+        "source_system": "Detection engine: EDR, NDR, SIEM, Firewall, IAM.",
+        "asset_id": "Target system identifier from asset inventory.",
+        "status": "Operational state: Open, Acknowledged, Investigated, Closed, Escalated.",
+        "disposition": "Analytical resolution: True Positive, False Positive, Benign, Duplicate."
+      }
+    },
+    "cases": {
+      "description": "Incident investigations opened from one or more alerts.",
+      "classification": "Restricted",
+      "fields": {
+        "case_id": "Unique incident tracking key.",
+        "cse_id": "Submitting Critical Sector Entity unique code.",
+        "created_at": "Timestamp when case was formally instantiated.",
+        "closed_at": "Timestamp when case was formally closed.",
+        "investigation_summary": "Narrative notes written by the investigating analyst.",
+        "evidence_count": "Count of forensic artifacts attached to the investigation.",
+        "root_cause": "Documented underlying vulnerability or failure vector."
+      }
+    },
+    "assets": {
+      "description": "Declared inventory of critical systems, networks, and controllers.",
+      "classification": "Confidential",
+      "fields": {
+        "asset_id": "Unique asset code within entity.",
+        "cse_id": "Critical Sector Entity code.",
+        "criticality": "Business impact tier: Critical, High, Medium, Low.",
+        "monitoring_expected": "Boolean indicating whether SOC is mandated to collect telemetry."
+      }
+    }
+  }
+}

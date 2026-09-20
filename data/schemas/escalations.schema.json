@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EscalationSchema",
+  "type": "object",
+  "required": ["escalation_id", "case_id", "escalation_level", "escalated_to", "escalated_at", "status"],
+  "properties": {
+    "escalation_id": { "type": "string" },
+    "case_id": { "type": "string" },
+    "escalation_level": { "type": "string" },
+    "escalated_to": { "type": "string" },
+    "escalated_at": { "type": "string", "format": "date-time" },
+    "reason": { "type": ["string", "null"] },
+    "acknowledged_at": { "type": ["string", "null"], "format": "date-time" },
+    "resolved_at": { "type": ["string", "null"], "format": "date-time" },
+    "status": { "type": "string" }
+  }
+}

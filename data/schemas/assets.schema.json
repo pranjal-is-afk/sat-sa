@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssetSchema",
+  "type": "object",
+  "required": ["asset_id", "cse_id", "asset_type", "business_service", "criticality", "monitoring_expected"],
+  "properties": {
+    "asset_id": { "type": "string" },
+    "cse_id": { "type": "string" },
+    "asset_type": { "type": "string" },
+    "business_service": { "type": "string" },
+    "criticality": { "type": "string", "enum": ["Critical", "High", "Medium", "Low"] },
+    "environment": { "type": ["string", "null"] },
+    "owner": { "type": ["string", "null"] },
+    "monitoring_expected": { "type": "boolean" },
+    "monitoring_source": { "type": ["string", "null"] }
+  }
+}

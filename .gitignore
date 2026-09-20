@@ -1,0 +1,47 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage/
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Local environment settings
+.env
+.env.*
+
+# Logs and runtime artifacts
+*.log
+*.sqlite3
+*.db
+*.db-journal
+
+# Local app runtime data (do not commit generated runtime state)
+data/*.db
+data/**/*.db
+data/uploads/*
+!data/uploads/.gitkeep
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local install/build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/

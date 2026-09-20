@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AlertSchema",
+  "type": "object",
+  "required": ["alert_id", "cse_id", "created_at", "severity", "alert_category", "status"],
+  "properties": {
+    "alert_id": { "type": "string", "pattern": "^ALT-[0-9A-Za-z_-]+$" },
+    "cse_id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "acknowledged_at": { "type": ["string", "null"], "format": "date-time" },
+    "closed_at": { "type": ["string", "null"], "format": "date-time" },
+    "severity": { "type": "string", "enum": ["Critical", "High", "Medium", "Low"] },
+    "alert_category": { "type": "string" },
+    "source_system": { "type": ["string", "null"] },
+    "asset_id": { "type": ["string", "null"] },
+    "asset_criticality": { "type": ["string", "null"], "enum": ["Critical", "High", "Medium", "Low", null] },
+    "status": { "type": "string", "enum": ["Open", "Acknowledged", "Investigated", "Closed", "Escalated"] },
+    "disposition": { "type": ["string", "null"] },
+    "case_id": { "type": ["string", "null"] },
+    "escalation_id": { "type": ["string", "null"] },
+    "analyst_id": { "type": ["string", "null"] },
+    "business_service": { "type": ["string", "null"] }
+  }
+}

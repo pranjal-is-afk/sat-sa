@@ -1,0 +1,2 @@
+case_id,cse_id,alert_id,created_at,closed_at,investigation_summary,evidence_count
+CASE-INT-1,CSE-TEST,ALT-INT-1,2026-08-01T10:00:00Z,2026-08-01T10:04:00Z,Fast close,0

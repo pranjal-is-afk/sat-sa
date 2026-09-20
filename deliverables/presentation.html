@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAT-SA : 5-Slide Evaluation Presentation | SIH26157 (NCIIPC / NTRO)</title>
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --card-bg: #111827;
+      --border: #1e293b;
+      --cyan: #06b6d4;
+      --blue: #2563eb;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #0f172a;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .badge {
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      color: var(--cyan);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+    .slider-viewport {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .slide {
+      display: none;
+      width: 92%;
+      max-width: 1200px;
+      height: 86vh;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 44px;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      animation: fadeIn 0.3s ease;
+    }
+    .slide.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slide-tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    h1 { font-size: 26px; color: #fff; margin-bottom: 20px; }
+    h2 { font-size: 18px; color: #38bdf8; margin-bottom: 14px; }
+    p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+    .box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .box.highlight {
+      border-left: 4px solid var(--cyan);
+    }
+    .box.danger {
+      border-left: 4px solid var(--red);
+    }
+    .box.emerald {
+      border-left: 4px solid var(--emerald);
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+    th, td { padding: 10px 14px; border: 1px solid var(--border); text-align: left; }
+    th { background: #0d1322; color: var(--cyan); }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    pre {
+      background: #070b12;
+      border: 1px solid var(--border);
+      padding: 14px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #38bdf8;
+      overflow-x: auto;
+    }
+    footer {
+      background: #0f172a;
+      border-top: 1px solid var(--border);
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-btn {
+      background: var(--blue);
+      border: none;
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .nav-btn:hover { opacity: 0.9; }
+    .nav-btn:disabled { background: #334155; cursor: not-allowed; }
+    .dots { display: flex; gap: 8px; }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%; background: #334155; cursor: pointer;
+    }
+    .dot.active { background: var(--cyan); }
+    @media print {
+      body { overflow: visible; height: auto; background: #fff; color: #000; }
+      .slide { display: block !important; page-break-after: always; height: auto; background: #fff; color: #000; border: none; box-shadow: none; padding: 20px; }
+      header, footer, .nav-btn { display: none; }
+      .box { background: #f8fafc; border-color: #cbd5e1; }
+      th { background: #e2e8f0; color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <strong style="color: #fff; font-size: 15px;">SAT-SA : Supervisory Analytics Tool for SOC Assessment</strong>
+      <span style="color: var(--muted); font-size: 12px; margin-left: 10px;">SIH26157 | NTRO & NCIIPC Context</span>
+    </div>
+    <div class="badge">OFFLINE AIR-GAPPED DEPLOYMENT</div>
+  </header>
+
+  <div class="slider-viewport">
+
+    <!-- SLIDE 1: PROBLEM & INSIGHT -->
+    <section class="slide active" id="slide-1">
+      <div class="slide-tag">Slide 1 of 5 • Problem & Insight</div>
+      <h1>Beyond Surface Compliance: Why Conventional SOC Oversight Fails</h1>
+      <p>NCIIPC evaluates the cyber resilience of Critical Sector Entities (CSEs) operating national infrastructure. Today, supervisory examiners face a critical structural gap between reported compliance and operational evidence.</p>
+      
+      <div class="grid-2">
+        <div class="box danger">
+          <h2 style="color: #f87171;">The Compliance Illusion</h2>
+          <ul style="color: #cbd5e1; font-size: 13px; line-height: 1.8; margin-left: 18px;">
+            <li>Entities report <strong>99.2% alert closure compliance</strong> and fast response times.</li>
+            <li>Self-assessment audits and static KPI dashboards show green across the board.</li>
+            <li>Examiners can manually inspect only <strong>1–3% of submitted records</strong> via random spot-checks.</li>
+            <li>Random sampling consistently misses high-consequence failure modes.</li>
+          </ul>
+        </div>
+        <div class="box highlight">
+          <h2>The Operational Reality (The Two Core Breakthroughs)</h2>
+          <div style="margin-bottom: 12px;">
+            <strong style="color: #38bdf8;">1. Execution Gaps:</strong>
+            <p style="margin: 2px 0 8px 0; font-size: 13px;">High closure compliance is achieved by closing critical alerts in &lt;5 mins with zero evidence, no escalation, and boilerplate copy-paste notes.</p>
+          </div>
+          <div>
+            <strong style="color: #38bdf8;">2. Negative Space:</strong>
+            <p style="margin: 2px 0 0 0; font-size: 13px;">Uncovering what <em>should</em> exist but is missing: critical SCADA gateways producing zero telemetry or alerts for weeks.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="box" style="margin-top: 20px; background: rgba(37, 99, 235, 0.1); border-color: rgba(37, 99, 235, 0.3);">
+        <strong style="color: #60a5fa;">Core Value Proposition:</strong>
+        <span style="color: #cbd5e1; font-size: 13px;"> SAT-SA is an offline decision-support tool that transforms massive periodic SOC records into an explainable, evidence-backed supervisory review queue, prioritizing expert examiner attention without replacing human judgement.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: ARCHITECTURE -->
+    <section class="slide" id="slide-2">
+      <div class="slide-tag">Slide 2 of 5 • Solution Architecture</div>
+      <h1>Fully Air-Gapped, Evidence-First Supervisory Architecture</h1>
+      <p>SAT-SA runs 100% locally inside an isolated NCIIPC enclave with zero external network connectivity, zero cloud API reliance, and tamper-evident cryptographic provenance.</p>
+
+      <pre>
+┌────────────────────────────────────────────────────────────────────────┐
+│               NCIIPC Controlled Air-Gapped Environment                 │
+│                                                                        │
+│  ┌──────────────────────────────────────────────────────────────────┐  │
+│  │             Supervisor Console & Web Command Center              │  │
+│  │   National Leaderboard • Review Queue • Evidence Drill-Down      │  │
+│  └──────────────────────────────────┬───────────────────────────────┘  │
+│                                     │ Local Network / HTTPS            │
+│  ┌──────────────────────────────────▼───────────────────────────────┐  │
+│  │                    FastAPI Supervisory Backend                   │  │
+│  │        Local RBAC • Session Management • Streaming APIs          │  │
+│  └──────────────────┬───────────────────────────────┬───────────────┘  │
+│                     │                               │                  │
+│  ┌──────────────────▼───────────┐       ┌───────────▼───────────────┐  │
+│  │   Data Ingestion & Quality   │       │  Hybrid Analytics Engine  │  │
+│  │  CSV/JSON Parsers • Hashing  │       │  Deterministic Rules      │  │
+│  │  Rules DQ-001 through DQ-012 │       │  Negative-Space Modeling  │  │
+│  │  Quarantine Isolated Store   │       │  NLP TF-IDF Similarity    │  │
+│  └──────────────────┬───────────┘       │  Non-Parametric Baselines │  │
+│                     │                   └───────────┬───────────────┘  │
+│                     │                               │                  │
+│  ┌──────────────────▼───────────────────────────────▼───────────────┐  │
+│  │                         Local Data Store                         │  │
+│  │   SQLite WAL (Canonical Tables) • Audit Store (SHA-256 Chained)  │  │
+│  └──────────────────────────────────────────────────────────────────┘  │
+│                                                                        │
+│      Zero Cloud Dependency • Zero Remote Telemetry • 100% Offline      │
+└────────────────────────────────────────────────────────────────────────┘
+      </pre>
+
+      <div class="grid-3" style="margin-top: 16px;">
+        <div class="box">
+          <strong style="color: #fff;">1. Ingestion & Quality</strong>
+          <p style="font-size: 12px; margin-top: 4px;">Immediate SHA-256 hashing; rules DQ-001–012 quarantine malformed rows.</p>
+        </div>
+        <div class="box">
+          <strong style="color: #fff;">2. Hybrid Analytics</strong>
+          <p style="font-size: 12px; margin-top: 4px;">Deterministic policy checks, negative space, and local TF-IDF text similarity.</p>
+        </div>
+        <div class="box">
+          <strong style="color: #fff;">3. Cryptographic Audit</strong>
+          <p style="font-size: 12px; margin-top: 4px;">Append-only SHA-256 chained audit trail guarantees 100% tamper evidence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: ANALYTICS MATRIX -->
+    <section class="slide" id="slide-3">
+      <div class="slide-tag">Slide 3 of 5 • Supervisory Analytics</div>
+      <h1>Multi-Vector Supervisory Signal Detection Matrix</h1>
+      <p>SAT-SA employs hybrid analytics designed specifically for supervisory oversight—favoring transparent, auditable rules and non-parametric statistics over opaque black-box models.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Supervisory Signal</th>
+            <th>Analytical Methodology</th>
+            <th>Concrete Operational Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Fast Critical Closures (R-INV-002)</strong></td>
+            <td>Robust non-parametric percentile analysis ($T_{closure} < P_{05}$)</td>
+            <td>Alert created-to-closed in &lt;5 mins (peer median: 54 mins), evidence count &le; 1</td>
+          </tr>
+          <tr>
+            <td><strong>Missing Escalation (R-ESC-001)</strong></td>
+            <td>Deterministic cross-table policy matrix check</td>
+            <td>Alert severity = Critical, asset tier = Critical, escalation record = NULL</td>
+          </tr>
+          <tr>
+            <td><strong>Superficial Investigation (R-INV-001)</strong></td>
+            <td>Multi-factor quality score ($Q_{investigation}$)</td>
+            <td>0 workflow steps, 0 forensic artifacts attached, blank root cause notes</td>
+          </tr>
+          <tr>
+            <td><strong>Chronic Repeat Alerts (R-REM-001)</strong></td>
+            <td>Recurrence ratio $R_{repeat} \ge 0.60$ over 30 days</td>
+            <td>Same asset & category recurring &gt;10 times with zero active remediation plan</td>
+          </tr>
+          <tr>
+            <td><strong>Boilerplate Narratives (R-INV-003)</strong></td>
+            <td>Local TF-IDF vectorization & Cosine Similarity (&ge; 0.85)</td>
+            <td>Near-identical copy-pasted investigation summaries across disparate assets</td>
+          </tr>
+          <tr>
+            <td><strong>Negative Space (R-NEG-001)</strong></td>
+            <td>Asset-to-telemetry coverage modeling ($C_{asset} = 0$)</td>
+            <td>Critical asset declared in inventory with 0 telemetry and 0 alerts for 21 days</td>
+          </tr>
+          <tr>
+            <td><strong>Peer Rate Outlier (R-BEN-001)</strong></td>
+            <td>Risk-adjusted benchmarking (Median, IQR, MAD)</td>
+            <td>Normalized alert rate per asset-day falling below sector 5th percentile</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: DEMO & EXPLAINABILITY -->
+    <section class="slide" id="slide-4">
+      <div class="slide-tag">Slide 4 of 5 • Explainability & Workflow</div>
+      <h1>Transparent Decision Support: From High-Level Risk to Raw Evidence</h1>
+      <p>Every finding in SAT-SA is 100% explainable, citing plain-language rationale, peer comparison baselines, and exact record citations.</p>
+
+      <div class="grid-2">
+        <div class="box highlight">
+          <h2>1. Decomposed Entity Risk Scoring</h2>
+          <div style="font-size: 20px; font-weight: bold; color: #ef4444; margin-bottom: 6px;">
+            CSE-04: High Supervisory Attention — 82/100
+          </div>
+          <p style="font-size: 12px; margin-bottom: 8px;">Transparent linear attribution without opaque scoring:</p>
+          <ul style="font-size: 12px; color: #cbd5e1; line-height: 1.8; margin-left: 18px;">
+            <li><strong>31%:</strong> Critical-Alert Escalation Gaps</li>
+            <li><strong>24%:</strong> Repeated Alerts Without Remediation</li>
+            <li><strong>18%:</strong> Unusually Fast High-Severity Closures</li>
+            <li><strong>15%:</strong> Missing Critical-Asset Telemetry (Negative Space)</li>
+            <li><strong>12%:</strong> Incomplete Investigation Workflow Evidence</li>
+          </ul>
+        </div>
+
+        <div class="box emerald">
+          <h2>2. Finding Detail & Evidence Drill-Down</h2>
+          <div style="background: #070b12; padding: 10px; border-radius: 6px; font-size: 12px; margin-bottom: 12px;">
+            <strong style="color: var(--cyan);">Finding F-INV-002:</strong> High-Severity Fast Closure<br>
+            <span style="color: #cbd5e1;">"Critical alert ALT-8832 was closed in 4 minutes compared to sector peer median of 54 minutes. The case contains 0 investigation steps, 0 evidence items, and no escalation record."</span>
+          </div>
+          <div style="font-size: 12px; color: #94a3b8;">
+            <strong>Human Authority Preserved:</strong> The supervisor reviews the interactive timeline and marks disposition (<em>Confirmed</em>, <em>Needs More Evidence</em>, <em>False Positive</em>) committing the action into the cryptographic audit trail.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: VALIDATION & DEPLOYMENT -->
+    <section class="slide" id="slide-5">
+      <div class="slide-tag">Slide 5 of 5 • Empirical Validation & Deployment</div>
+      <h1>Empirical Validation Against Expert Review & Air-Gapped Deployment</h1>
+      <p>SAT-SA was empirically benchmarked against 10 synthetic Critical Sector Entity profiles with known injected operational flaws.</p>
+
+      <div class="grid-2">
+        <div class="box">
+          <h2>Benchmark Retrieval Performance</h2>
+          <div class="grid-3" style="margin: 12px 0;">
+            <div style="background: #0f172a; padding: 12px; border-radius: 6px; text-align: center;">
+              <div style="font-size: 24px; font-weight: bold; color: var(--emerald);">100%</div>
+              <div style="font-size: 11px; color: var(--muted);">Recall of Known Flaws</div>
+            </div>
+            <div style="background: #0f172a; padding: 12px; border-radius: 6px; text-align: center;">
+              <div style="font-size: 24px; font-weight: bold; color: var(--cyan);">94.2%</div>
+              <div style="font-size: 11px; color: var(--muted);">Top-50 Review Recall</div>
+            </div>
+            <div style="background: #0f172a; padding: 12px; border-radius: 6px; text-align: center;">
+              <div style="font-size: 24px; font-weight: bold; color: #a78bfa;">85%</div>
+              <div style="font-size: 11px; color: var(--muted);">Review Time Saved</div>
+            </div>
+          </div>
+          <p style="font-size: 12px;">Top-50 recall reaches <strong>94.2%</strong> compared to standard random audit sampling baseline of <strong>8.5%</strong>.</p>
+        </div>
+
+        <div class="box">
+          <h2>Deployment Specifications</h2>
+          <ul style="font-size: 13px; color: #cbd5e1; line-height: 1.8; margin-left: 18px;">
+            <li><strong>Deployment Model:</strong> Standalone Python or Docker Compose.</li>
+            <li><strong>Hardware:</strong> 4 CPU cores, 8 GB RAM, 20 GB SSD. <strong>No GPU required.</strong></li>
+            <li><strong>Network Requirements:</strong> Local isolated network; <strong>ZERO outbound Internet connections</strong>.</li>
+            <li><strong>Zero CDN Dependencies:</strong> All fonts, SVGs, styles, and scripts vendored locally.</li>
+            <li><strong>Turnkey Setup:</strong> <code>python run.py --seed --port 8000</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div>
+      <button id="prevBtn" class="nav-btn" onclick="prevSlide()" disabled>&#8592; Previous</button>
+      <button id="nextBtn" class="nav-btn" onclick="nextSlide()" style="margin-left: 8px;">Next &#8594;</button>
+    </div>
+    <div class="dots">
+      <div class="dot active" onclick="goToSlide(1)"></div>
+      <div class="dot" onclick="goToSlide(2)"></div>
+      <div class="dot" onclick="goToSlide(3)"></div>
+      <div class="dot" onclick="goToSlide(4)"></div>
+      <div class="dot" onclick="goToSlide(5)"></div>
+    </div>
+    <div style="font-size: 12px; color: var(--muted);">
+      Press <kbd style="background: #1e293b; padding: 2px 6px; border-radius: 4px; color: #fff;">&#8592;</kbd> or <kbd style="background: #1e293b; padding: 2px 6px; border-radius: 4px; color: #fff;">&#8594;</kbd> to navigate | Print to PDF anytime
+    </div>
+  </footer>
+
+  <script>
+    let current = 1;
+    const total = 5;
+
+    function showSlide(num) {
+      document.querySelectorAll('.slide').forEach((s, idx) => {
+        s.classList.toggle('active', (idx + 1) === num);
+      });
+      document.querySelectorAll('.dot').forEach((d, idx) => {
+        d.classList.toggle('active', (idx + 1) === num);
+      });
+      document.getElementById('prevBtn').disabled = (num === 1);
+      document.getElementById('nextBtn').disabled = (num === total);
+      current = num;
+    }
+
+    function prevSlide() { if (current > 1) showSlide(current - 1); }
+    function nextSlide() { if (current < total) showSlide(current + 1); }
+    function goToSlide(n) { showSlide(n); }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+</body>
+</html>

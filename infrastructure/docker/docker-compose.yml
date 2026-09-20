@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  sat-sa-core:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile
+    container_name: sat-sa-supervisor
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - sat-sa-data:/app/data
+    environment:
+      - OFFLINE_MODE=true
+      - AIR_GAPPED=true
+      - APP_PORT=8000
+    networks:
+      - airgap-internal
+
+volumes:
+  sat-sa-data:
+    driver: local
+
+networks:
+  airgap-internal:
+    internal: true # Air-gap strictness: denies all outbound external internet egress

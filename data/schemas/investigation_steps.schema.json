@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InvestigationStepSchema",
+  "type": "object",
+  "required": ["step_id", "case_id", "step_name", "step_status"],
+  "properties": {
+    "step_id": { "type": "string" },
+    "case_id": { "type": "string" },
+    "step_name": { "type": "string" },
+    "step_status": { "type": "string", "enum": ["Pending", "Completed", "Failed"] },
+    "performed_by": { "type": ["string", "null"] },
+    "started_at": { "type": ["string", "null"], "format": "date-time" },
+    "completed_at": { "type": ["string", "null"], "format": "date-time" },
+    "notes": { "type": ["string", "null"] },
+    "evidence_reference": { "type": ["string", "null"] }
+  }
+}

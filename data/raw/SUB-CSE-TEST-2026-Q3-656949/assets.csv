@@ -1,0 +1,3 @@
+asset_id,cse_id,asset_type,business_service,criticality,monitoring_expected
+AST-INT-1,CSE-TEST,SCADA,Grid Control,Critical,True
+AST-SILENT-1,CSE-TEST,Database,Customer DB,Critical,True

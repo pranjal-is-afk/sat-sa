@@ -1,0 +1,975 @@
+[
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0005",
+    "description": "Critical alert CSE-03-ALT-0005 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0010",
+    "description": "Critical alert CSE-03-ALT-0010 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0015",
+    "description": "Critical alert CSE-03-ALT-0015 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0020",
+    "description": "Critical alert CSE-03-ALT-0020 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0025",
+    "description": "Critical alert CSE-03-ALT-0025 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0030",
+    "description": "Critical alert CSE-03-ALT-0030 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0035",
+    "description": "Critical alert CSE-03-ALT-0035 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0040",
+    "description": "Critical alert CSE-03-ALT-0040 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0045",
+    "description": "Critical alert CSE-03-ALT-0045 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0050",
+    "description": "Critical alert CSE-03-ALT-0050 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0055",
+    "description": "Critical alert CSE-03-ALT-0055 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-03",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-03-ALT-0060",
+    "description": "Critical alert CSE-03-ALT-0060 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0003",
+    "description": "Critical/High alert CSE-04-ALT-0003 closed in 3 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0005",
+    "description": "Critical/High alert CSE-04-ALT-0005 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0006",
+    "description": "Critical/High alert CSE-04-ALT-0006 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0009",
+    "description": "Critical/High alert CSE-04-ALT-0009 closed in 3 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0010",
+    "description": "Critical/High alert CSE-04-ALT-0010 closed in 3 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0012",
+    "description": "Critical/High alert CSE-04-ALT-0012 closed in 3 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0015",
+    "description": "Critical/High alert CSE-04-ALT-0015 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0018",
+    "description": "Critical/High alert CSE-04-ALT-0018 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0020",
+    "description": "Critical/High alert CSE-04-ALT-0020 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0021",
+    "description": "Critical/High alert CSE-04-ALT-0021 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0024",
+    "description": "Critical/High alert CSE-04-ALT-0024 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0025",
+    "description": "Critical/High alert CSE-04-ALT-0025 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0027",
+    "description": "Critical/High alert CSE-04-ALT-0027 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0030",
+    "description": "Critical/High alert CSE-04-ALT-0030 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0033",
+    "description": "Critical/High alert CSE-04-ALT-0033 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0035",
+    "description": "Critical/High alert CSE-04-ALT-0035 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0036",
+    "description": "Critical/High alert CSE-04-ALT-0036 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0039",
+    "description": "Critical/High alert CSE-04-ALT-0039 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0040",
+    "description": "Critical/High alert CSE-04-ALT-0040 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0042",
+    "description": "Critical/High alert CSE-04-ALT-0042 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0045",
+    "description": "Critical/High alert CSE-04-ALT-0045 closed in 3 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0048",
+    "description": "Critical/High alert CSE-04-ALT-0048 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0050",
+    "description": "Critical/High alert CSE-04-ALT-0050 closed in 3 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0051",
+    "description": "Critical/High alert CSE-04-ALT-0051 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0054",
+    "description": "Critical/High alert CSE-04-ALT-0054 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0055",
+    "description": "Critical/High alert CSE-04-ALT-0055 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0057",
+    "description": "Critical/High alert CSE-04-ALT-0057 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-04",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-04-ALT-0060",
+    "description": "Critical/High alert CSE-04-ALT-0060 closed in 3 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0006",
+    "description": "Case CSE-05-CASE-0006 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0007",
+    "description": "Case CSE-05-CASE-0007 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0008",
+    "description": "Case CSE-05-CASE-0008 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0009",
+    "description": "Case CSE-05-CASE-0009 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0010",
+    "description": "Case CSE-05-CASE-0010 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0011",
+    "description": "Case CSE-05-CASE-0011 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0012",
+    "description": "Case CSE-05-CASE-0012 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0013",
+    "description": "Case CSE-05-CASE-0013 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0014",
+    "description": "Case CSE-05-CASE-0014 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0015",
+    "description": "Case CSE-05-CASE-0015 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0016",
+    "description": "Case CSE-05-CASE-0016 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0017",
+    "description": "Case CSE-05-CASE-0017 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0018",
+    "description": "Case CSE-05-CASE-0018 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0019",
+    "description": "Case CSE-05-CASE-0019 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0020",
+    "description": "Case CSE-05-CASE-0020 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0021",
+    "description": "Case CSE-05-CASE-0021 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0022",
+    "description": "Case CSE-05-CASE-0022 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0023",
+    "description": "Case CSE-05-CASE-0023 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0024",
+    "description": "Case CSE-05-CASE-0024 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0025",
+    "description": "Case CSE-05-CASE-0025 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0026",
+    "description": "Case CSE-05-CASE-0026 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0027",
+    "description": "Case CSE-05-CASE-0027 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0028",
+    "description": "Case CSE-05-CASE-0028 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0029",
+    "description": "Case CSE-05-CASE-0029 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0030",
+    "description": "Case CSE-05-CASE-0030 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0031",
+    "description": "Case CSE-05-CASE-0031 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0032",
+    "description": "Case CSE-05-CASE-0032 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0033",
+    "description": "Case CSE-05-CASE-0033 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0034",
+    "description": "Case CSE-05-CASE-0034 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0035",
+    "description": "Case CSE-05-CASE-0035 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0036",
+    "description": "Case CSE-05-CASE-0036 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0037",
+    "description": "Case CSE-05-CASE-0037 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0038",
+    "description": "Case CSE-05-CASE-0038 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0039",
+    "description": "Case CSE-05-CASE-0039 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0040",
+    "description": "Case CSE-05-CASE-0040 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0041",
+    "description": "Case CSE-05-CASE-0041 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0042",
+    "description": "Case CSE-05-CASE-0042 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0043",
+    "description": "Case CSE-05-CASE-0043 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0044",
+    "description": "Case CSE-05-CASE-0044 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0045",
+    "description": "Case CSE-05-CASE-0045 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0046",
+    "description": "Case CSE-05-CASE-0046 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0047",
+    "description": "Case CSE-05-CASE-0047 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0048",
+    "description": "Case CSE-05-CASE-0048 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0049",
+    "description": "Case CSE-05-CASE-0049 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0050",
+    "description": "Case CSE-05-CASE-0050 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0051",
+    "description": "Case CSE-05-CASE-0051 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0052",
+    "description": "Case CSE-05-CASE-0052 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0053",
+    "description": "Case CSE-05-CASE-0053 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0054",
+    "description": "Case CSE-05-CASE-0054 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0055",
+    "description": "Case CSE-05-CASE-0055 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0056",
+    "description": "Case CSE-05-CASE-0056 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0057",
+    "description": "Case CSE-05-CASE-0057 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0058",
+    "description": "Case CSE-05-CASE-0058 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0059",
+    "description": "Case CSE-05-CASE-0059 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-05",
+    "finding_type": "REPETITIVE_INVESTIGATION_NARRATIVE",
+    "rule_id": "R-INV-003",
+    "record_id": "CSE-05-CASE-0060",
+    "description": "Case CSE-05-CASE-0060 investigation narrative is boilerplate copy-paste with >90% text similarity."
+  },
+  {
+    "entity_id": "CSE-06",
+    "finding_type": "REPEATED_ALERTS_NO_REMEDIATION",
+    "rule_id": "R-REM-001",
+    "record_id": "CSE-06-AST-001",
+    "description": "Asset CSE-06-AST-001 has >12 repeated critical/high alerts with zero root-cause remediation."
+  },
+  {
+    "entity_id": "CSE-07",
+    "finding_type": "CRITICAL_ASSET_MISSING_TELEMETRY",
+    "rule_id": "R-NEG-001",
+    "record_id": "CSE-07-AST-001",
+    "description": "Critical asset CSE-07-AST-001 expected to be monitored has produced zero telemetry or alerts for 25 days."
+  },
+  {
+    "entity_id": "CSE-07",
+    "finding_type": "CRITICAL_ASSET_MISSING_TELEMETRY",
+    "rule_id": "R-NEG-001",
+    "record_id": "CSE-07-AST-002",
+    "description": "Critical asset CSE-07-AST-002 expected to be monitored has produced zero telemetry or alerts for 25 days."
+  },
+  {
+    "entity_id": "CSE-07",
+    "finding_type": "CRITICAL_ASSET_MISSING_TELEMETRY",
+    "rule_id": "R-NEG-001",
+    "record_id": "CSE-07-AST-003",
+    "description": "Critical asset CSE-07-AST-003 expected to be monitored has produced zero telemetry or alerts for 25 days."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0003",
+    "description": "Critical/High alert CSE-10-ALT-0003 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0005",
+    "description": "Critical/High alert CSE-10-ALT-0005 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0005",
+    "description": "Critical alert CSE-10-ALT-0005 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0006",
+    "description": "Critical/High alert CSE-10-ALT-0006 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0009",
+    "description": "Critical/High alert CSE-10-ALT-0009 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0010",
+    "description": "Critical/High alert CSE-10-ALT-0010 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0010",
+    "description": "Critical alert CSE-10-ALT-0010 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0012",
+    "description": "Critical/High alert CSE-10-ALT-0012 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0015",
+    "description": "Critical/High alert CSE-10-ALT-0015 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0015",
+    "description": "Critical alert CSE-10-ALT-0015 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0018",
+    "description": "Critical/High alert CSE-10-ALT-0018 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0020",
+    "description": "Critical/High alert CSE-10-ALT-0020 closed in 3 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0020",
+    "description": "Critical alert CSE-10-ALT-0020 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0021",
+    "description": "Critical/High alert CSE-10-ALT-0021 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0024",
+    "description": "Critical/High alert CSE-10-ALT-0024 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0025",
+    "description": "Critical/High alert CSE-10-ALT-0025 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0025",
+    "description": "Critical alert CSE-10-ALT-0025 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0027",
+    "description": "Critical/High alert CSE-10-ALT-0027 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0030",
+    "description": "Critical/High alert CSE-10-ALT-0030 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0030",
+    "description": "Critical alert CSE-10-ALT-0030 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0033",
+    "description": "Critical/High alert CSE-10-ALT-0033 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0035",
+    "description": "Critical/High alert CSE-10-ALT-0035 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0035",
+    "description": "Critical alert CSE-10-ALT-0035 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0036",
+    "description": "Critical/High alert CSE-10-ALT-0036 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0039",
+    "description": "Critical/High alert CSE-10-ALT-0039 closed in 4 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0040",
+    "description": "Critical/High alert CSE-10-ALT-0040 closed in 3 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0040",
+    "description": "Critical alert CSE-10-ALT-0040 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0042",
+    "description": "Critical/High alert CSE-10-ALT-0042 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0045",
+    "description": "Critical/High alert CSE-10-ALT-0045 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0045",
+    "description": "Critical alert CSE-10-ALT-0045 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0048",
+    "description": "Critical/High alert CSE-10-ALT-0048 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0050",
+    "description": "Critical/High alert CSE-10-ALT-0050 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0050",
+    "description": "Critical alert CSE-10-ALT-0050 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0051",
+    "description": "Critical/High alert CSE-10-ALT-0051 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0054",
+    "description": "Critical/High alert CSE-10-ALT-0054 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0055",
+    "description": "Critical/High alert CSE-10-ALT-0055 closed in 5 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0055",
+    "description": "Critical alert CSE-10-ALT-0055 on critical asset had no linked escalation."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0057",
+    "description": "Critical/High alert CSE-10-ALT-0057 closed in 2 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "HIGH_SEVERITY_FAST_CLOSURE",
+    "rule_id": "R-INV-002",
+    "record_id": "CSE-10-ALT-0060",
+    "description": "Critical/High alert CSE-10-ALT-0060 closed in 6 mins (< peer 5th percentile) with low evidence."
+  },
+  {
+    "entity_id": "CSE-10",
+    "finding_type": "CRITICAL_ALERT_MISSING_ESCALATION",
+    "rule_id": "R-ESC-001",
+    "record_id": "CSE-10-ALT-0060",
+    "description": "Critical alert CSE-10-ALT-0060 on critical asset had no linked escalation."
+  }
+]

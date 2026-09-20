@@ -1,0 +1,2 @@
+alert_id,cse_id,created_at,acknowledged_at,closed_at,severity,alert_category,asset_id,status,case_id
+ALT-INT-1,CSE-TEST,2026-08-01T10:00:00Z,2026-08-01T10:02:00Z,2026-08-01T10:04:00Z,Critical,Malware,AST-INT-1,Closed,CASE-INT-1

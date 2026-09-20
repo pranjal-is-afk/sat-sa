@@ -1,0 +1,14 @@
+# SAT-SA Two-Minute Demo Video Submission Link & Submission Registry
+Problem Statement: SIH26157 (NTRO / NCIIPC)
+
+[DEMO VIDEO URL PLACEHOLDER]
+URL: https://youtu.be/EXAMPLE_SAT_SA_SIH26157_DEMO
+
+NOTE FOR SIH EVALUATORS:
+The accompanying live demo script and cue-card timings are detailed in:
+- docs/21-demo-script.md
+- deliverables/demo-video-guide.md
+
+To run the live interactive prototype locally in your air-gapped test environment:
+$ python run.py --seed --serve
+Then access the dashboard at: http://127.0.0.1:8000

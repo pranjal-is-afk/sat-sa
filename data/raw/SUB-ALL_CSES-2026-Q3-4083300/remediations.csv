@@ -1,0 +1,2 @@
+remediation_id,asset_id,case_id,vulnerability_or_root_cause,action_plan,status,due_date
+REM-001,CSE-01-AST-001,CSE-01-CASE-0005,Firmware buffer overflow CVE-2026-1002,Applied vendor patch v2.4 to core grid controller,Completed,2026-08-15

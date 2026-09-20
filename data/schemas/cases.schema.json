@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CaseSchema",
+  "type": "object",
+  "required": ["case_id", "cse_id", "created_at"],
+  "properties": {
+    "case_id": { "type": "string", "pattern": "^CASE-[0-9A-Za-z_-]+$" },
+    "cse_id": { "type": "string" },
+    "alert_id": { "type": ["string", "null"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "investigation_started_at": { "type": ["string", "null"], "format": "date-time" },
+    "closed_at": { "type": ["string", "null"], "format": "date-time" },
+    "priority": { "type": ["string", "null"], "enum": ["Critical", "High", "Medium", "Low", null] },
+    "investigation_summary": { "type": ["string", "null"] },
+    "evidence_count": { "type": "integer", "minimum": 0 },
+    "closure_reason": { "type": ["string", "null"] },
+    "root_cause": { "type": ["string", "null"] },
+    "remediation_status": { "type": ["string", "null"] },
+    "reviewer_id": { "type": ["string", "null"] }
+  }
+}
