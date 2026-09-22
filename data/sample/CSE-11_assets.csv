@@ -1,0 +1,5 @@
+asset_id,cse_id,classification,asset_type,sector
+FIN-SERVER-04,CSE-11,CRITICAL,Server,Banking
+SWIFT-GW-04,CSE-11,CRITICAL,Network,Banking
+CTRL-SRV-11,CSE-11,CRITICAL,Server,Banking
+ENDPOINT-11A,CSE-11,MEDIUM,Endpoint,Banking

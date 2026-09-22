@@ -1,0 +1,6 @@
+asset_id,cse_id,classification,asset_type,sector
+5G-CORE-UPF-01,CSE-03,CRITICAL,Server,Telecom
+5G-AMF-NODE-02,CSE-03,CRITICAL,Server,Telecom
+CARRIER-ROUTER-99,CSE-03,HIGH,Network,Telecom
+TELCO-AAA-SRV,CSE-03,HIGH,Database,Telecom
+EDGE-GATEWAY-12,CSE-03,MEDIUM,Network,Telecom

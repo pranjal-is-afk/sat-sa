@@ -1,0 +1,322 @@
+# SAT-SA — Supervisory Analytics Tool for SOC Assessment
+> Problem Statement #26157 · NCIIPC / NTRO · Category: Software
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Offline-First](https://img.shields.io/badge/Deployment-Air--Gapped-green.svg)]()
+[![Stack: Python + React](https://img.shields.io/badge/Stack-Python%20%2B%20React-yellow.svg)]()
+[![Status: Prototype Validated](https://img.shields.io/badge/Status-Prototype%20Validated-brightgreen.svg)]()
+
+---
+
+## What This Is
+
+SAT-SA is a **fully offline, air-gapped supervisory analytics platform** that helps NCIIPC supervisors analyse SOC (Security Operations Centre) alert and case-management data at scale — detecting what manual sampling detects, faster, and across more entities simultaneously.
+
+It does not replace supervisory judgement. It replaces the parts that should never have needed a human in the first place.
+
+---
+
+## The Problem It Solves
+
+Manual SOC reviews by NCIIPC consistently uncover two categories of weakness that **no dashboard, audit, self-assessment, or KPI** catches:
+
+| Weakness Type | What It Looks Like |
+|---|---|
+| **Execution Gap** | Controls exist on paper. Operationally, alerts are acknowledged but not investigated; cases closed in seconds; critical alerts never escalated. |
+| **Negative Space** | Evidence that *should* exist is absent. No telemetry from critical systems. Missing alert categories. Unexpectedly quiet entities. |
+
+SAT-SA detects both — systematically, at scale, across all enrolled Critical Sector Entities (CSEs).
+
+---
+
+## Architecture
+
+```
+[ Data Sources ]
+      │
+      ▼  (USB / Local Upload — CSV, JSON, DB Export)
+┌─────────────────────────────────────────────┐
+│          Layer 1: Ingestion Engine           │
+│  Pandas + Pydantic · Streaming Parsers ·    │
+│  Schema Enforcement · Disposition Taxonomy  │
+└───────────────────┬─────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────┐
+│       Layer 2: Analytics Engine              │
+│  DuckDB (embedded OLAP) + PostgreSQL        │
+│  ┌────────────┐  ┌──────────────┐           │
+│  │ Rules +    │  │ Anomaly /    │           │
+│  │ Statistics │  │ Outlier Det. │           │
+│  └────────────┘  └──────────────┘           │
+│  ┌────────────┐  ┌──────────────┐           │
+│  │ Peer       │  │ Entity Risk  │           │
+│  │ Benchmark  │  │ Scoring      │           │
+│  └────────────┘  └──────────────┘           │
+│  SHAP Explainability · Drift Monitoring     │
+└───────────────────┬─────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────┐
+│     Layer 3: Supervisor Dashboard (React)    │
+│  Risk Matrix · Drill-Down to Raw Evidence   │
+│  SHAP Waterfall · Flag Rationale + Trace    │
+└───────────────────┬─────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────┐
+│     Layer 4: Offline Reporting               │
+│  Multi-CSE PDF / Excel · Streaming Writers  │
+│  Audit Trail · Decision Traceability        │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+## Tech Stack
+
+| Component | Technology | Why |
+|---|---|---|
+| Frontend UI | React.js + Recharts | Static build; zero network calls; canvas-based charting for large datasets |
+| Backend API | Python (FastAPI) | Native data-science ecosystem; lightweight; loopback REST |
+| Primary Database | PostgreSQL | Multi-CSE tracking; structural data |
+| Analytical Engine | DuckDB (embedded) | Sub-second OLAP queries on local CSV/JSON; no external cluster |
+| Data Ingestion | Pandas + Pydantic | Streaming chunk parsers; schema enforcement; avoids memory exhaustion |
+| ML / Explainability | LightGBM + SHAP | TreeSHAP is exact and near-instant; works fully offline |
+| Local LLM (optional) | Ollama + ONNX Runtime | Offline inference; no API dependency |
+| Packaging | Docker + Docker Compose | Single-command install from USB; no internet required |
+
+---
+
+## Core Features
+
+### Execution Gap Detection
+- Alerts acknowledged but not meaningfully investigated (dwell-time analysis)
+- Cases closed below minimum investigation threshold
+- Critical alerts closed without escalation — flagged automatically
+- Template-driven / repetitive investigation patterns via sequence analysis
+- Metric-satisfying behaviour that doesn't reduce actual risk (counter-metric pairing)
+
+### Negative Space Detection
+- Missing telemetry from critical assets (asset inventory cross-reference)
+- Absence of expected alert categories for enrolled CSE type
+- Unexpectedly low alert or escalation volumes vs peer benchmarks
+- Monitoring blind spots — systems generating zero signals for extended periods
+
+### Risk Scoring & Prioritisation
+```
+Risk Score = w1·Rules + w2·AnomalyScore + w3·PeerDeviation
+           + w4·HistoricalSeverity + w5·NetworkFeatures
+
+Priority Queue = RiskScore × ExpectedImpact × Novelty × Confidence × Urgency
+```
+
+### AI Explainability (Every Flag Has a Reason)
+Every risk flag ships with three mandatory elements:
+
+| Element | What It Answers | Example |
+|---|---|---|
+| **Rationale** | Why was this flagged? | "Alert closed in 8s; peer median is 340s; no actions logged." |
+| **Evidence** | What data supports it? | SHAP waterfall: top contributing features + values |
+| **Traceability** | How was it produced? | Model version, rule version, feature hash, timestamp, decision ID |
+
+No black-box outputs. Every flag is contestable, auditable, and reproducible.
+
+### SHAP Drift Monitoring
+Continuous monitoring of SHAP contribution patterns across batches detects concept drift, feature decay, and data quality issues *before* overall performance metrics degrade.
+
+---
+
+## Data Requirements
+
+The system operates on **structured metadata only** — no raw logs, no packet captures, no customer PII required.
+
+| Data Entity | Key Fields |
+|---|---|
+| Alert Metadata | Alert ID, rule name, severity, timestamp, entities, MITRE tactic/technique, source system |
+| Case Management | Case ID, linked alerts, status, assignee, creation/closure times, priority, template |
+| Investigation Workflow | Phase timestamps, actions taken, evidence collected, playbook ID |
+| Escalations | Timestamp, from/to tier, reason, SLA timers |
+| Dispositions | Standardised close code, root cause, time-to-disposition |
+| Asset Inventory | Asset ID, type, criticality/CIA rating, owner, department, zone |
+
+Accepted formats: CSV, JSON, database exports.
+
+---
+
+## Supported Supervisory Signals (PS+ Framework)
+
+Beyond headline KPIs, SAT-SA detects the signals that matter:
+
+**Ownership signals** — no named owner; repeated escalation; unresolved tasks across review cycles
+
+**Timing signals** — milestone slip patterns; approval queues exceeding execution time; single-point-of-failure analysts
+
+**Handoff signals** — rework loops; information loss between tiers; late discovery of upstream problems
+
+**Quality signals** — defects rising while volume looks healthy; workarounds; repeated audit findings
+
+**Adoption signals** — training completed but behaviour unchanged; tool available but practically unusable
+
+**Capacity signals** — bottleneck analysts; maintenance backlog; new initiatives without closing old ones
+
+**Decision signals** — decisions reopened frequently; data available only after decision window closes
+
+**Risk signals** — mitigations that exist only on paper; near misses not investigated
+
+**Negative-space signals** — no metric for a key assumption; no feedback from a key segment; map shows internal activity but not impact
+
+---
+
+## Validation Methodology
+
+The system is validated against **expert manual review** using a structured 8-step framework:
+
+1. **Gold-standard ground truth** — 2–3 independent experts label a stratified hold-out set (target κ ≥ 0.7)
+2. **Blinded side-by-side evaluation** — McNemar's test for statistical significance
+3. **Head-to-head error analysis** — confusion matrices; severity-weighted error rates
+4. **Non-inferiority / superiority testing** — pre-specified primary endpoint (F1 / AUC)
+5. **Multi-expert reliability baseline** — sets the realistic upper bound for human performance
+6. **Shadow mode** — system runs in parallel with live expert review for a defined period
+7. **Efficiency & consistency advantages** — throughput, turnaround time, intra-system consistency
+8. **Independent audit** (optional) — third-party expert panel re-scores a sample
+
+---
+
+## Deployment Requirements
+
+| Requirement | Specification |
+|---|---|
+| Network | Fully offline / air-gapped; no internet; no cloud; no SaaS |
+| Standard Operation | Intel i7/Ryzen 7, 16 GB RAM, SSD |
+| ML-Accelerated | Add NVIDIA RTX series (8 GB+ VRAM) for local LLM inference |
+| Install | Docker Compose — single command from USB |
+| Storage | ~180 GB/year at 500 MB/day ingestion; RAID 1/5 NVMe recommended |
+
+---
+
+## Repository Structure
+
+```
+sat-sa/
+├── README.md
+├── docker-compose.yml
+├── .env.example
+│
+├── backend/
+│   ├── main.py                  # FastAPI entry point
+│   ├── ingestion/               # CSV/JSON parsers, schema validators
+│   ├── analytics/
+│   │   ├── rules_engine.py      # Deterministic rule execution
+│   │   ├── statistical.py       # Z-score, MAD, rolling baselines
+│   │   ├── anomaly.py           # Isolation Forest, LOF
+│   │   ├── peer_benchmark.py    # Peer group percentiles
+│   │   ├── risk_score.py        # Entity risk scoring
+│   │   └── shap_explainer.py    # SHAP values + drift monitoring
+│   ├── reporting/               # PDF/Excel streaming writers
+│   └── db/                      # DuckDB + PostgreSQL setup
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Dashboard/       # Risk matrix, entity list
+│   │   │   ├── DrillDown/       # Flag → evidence explorer
+│   │   │   ├── SHAPWaterfall/   # Per-entity explainability view
+│   │   │   └── Reports/         # Export controls
+│   │   └── App.jsx
+│   └── package.json
+│
+├── docs/
+│   ├── architecture.pdf         # 2-page architecture document
+│   ├── methodology.md           # Analytics methodology
+│   ├── data_requirements.md     # Field definitions
+│   ├── validation_framework.md  # Validation against expert review
+│   └── deployment_guide.md      # Offline setup instructions
+│
+├── data/
+│   └── sample/                  # Anonymised sample datasets
+│
+└── models/
+    └── baseline/                # Pre-trained baseline model + explainer
+```
+
+---
+
+## Setup Instructions
+
+### Prerequisites
+- Docker Desktop (or Docker Engine + Docker Compose)
+- 16 GB RAM minimum
+- All files must be available locally — no internet required after initial setup
+
+### Install (Online — for pre-packaging)
+```bash
+git clone https://github.com/<your-org>/sat-sa.git
+cd sat-sa
+docker compose pull
+docker compose build
+```
+
+### Install (Offline — from USB)
+```bash
+# On the USB drive:
+# sat-sa-images.tar    ← pre-exported Docker images
+# sat-sa/              ← this repository
+
+# On the target machine:
+docker load -i /media/usb/sat-sa-images.tar
+cd /media/usb/sat-sa
+docker compose up -d
+```
+
+### Access
+- Supervisor Dashboard: `http://localhost:3000`
+- Backend API: `http://localhost:8000`
+- API Docs: `http://localhost:8000/docs`
+
+### Ingest Data
+```bash
+# Drop CSV/JSON files into the watched directory:
+cp alerts_export.csv ./data/ingestion/
+cp cases_export.json ./data/ingestion/
+
+# Or POST directly to the local API:
+curl -X POST http://localhost:8000/ingest \
+  -F "file=@alerts_export.csv" \
+  -F "entity_id=CSE_001"
+```
+
+---
+
+## Deliverables (per Problem Statement)
+
+- [x] Source Code (this repository)
+- [x] README with Setup Instructions (this file)
+- [ ] Architecture Document (Max 2 Pages) → `docs/architecture.pdf`
+- [ ] Demo Video (Max 2 Minutes) → link TBD
+- [ ] Technical Presentation (Max 5 Slides) → link TBD
+
+---
+
+## Performance Criteria Alignment
+
+| Criterion | How SAT-SA Addresses It |
+|---|---|
+| Supervisory Assessment Support | Ranked review queue; drill-down to raw evidence; multi-CSE comparison |
+| Execution Gap Detection | Dwell-time, closure-speed, escalation-absence, pattern analysis |
+| Negative Space Detection | Peer benchmarking; absence detection; blind-spot identification |
+| Explainability & Auditability | Rationale + Evidence + Traceability on every flag; SHAP waterfall |
+| Scalability & Performance | DuckDB embedded OLAP; streaming ingestion; canvas-based UI |
+| Innovation | PS+ signal framework; SHAP drift monitoring; counter-metric pairing |
+
+---
+
+## Contributing
+
+This is a competition submission. Issues and PRs are welcome after the evaluation period.
+
+---
+
+## License
+
+MIT © 2026

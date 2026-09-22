@@ -1,0 +1,6 @@
+asset_id,cse_id,classification,asset_type,sector
+DEF-MISSILE-CTRL-01,CSE-04,CRITICAL,SCADA / OT,Defence
+RADAR-INTEL-SRV-02,CSE-04,CRITICAL,Server,Defence
+WEAPON-TEST-DB,CSE-04,CRITICAL,Database,Defence
+DEF-PERIMETER-FW,CSE-04,HIGH,Firewall,Defence
+RESEARCH-WORKSTATION-01,CSE-04,LOW,Endpoint,Defence

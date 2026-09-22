@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv/
+dist/
+build/
+*.egg-info/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Frontend
+node_modules/
+frontend/dist/
+frontend/build/
+.npm
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+*.tar
+docker-images/
+
+# Database
+*.db
+*.sqlite3
+*.duckdb
+postgres-data/
+
+# Sensitive / Local
+.env
+.env.local
+.env.*.local
+config/secrets.yaml
+data/ingestion/
+data/outputs/
+
+# Models (large files — store separately)
+models/**/*.onnx
+models/**/*.bin
+models/**/*.gguf
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Reports output (generated artifacts)
+reports/generated/

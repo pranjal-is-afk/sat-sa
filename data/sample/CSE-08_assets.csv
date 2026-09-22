@@ -1,0 +1,6 @@
+asset_id,cse_id,classification,asset_type,sector
+REACTOR-PLC-01,CSE-08,CRITICAL,SCADA / OT,Energy
+SAFETY-SYS-09,CSE-08,CRITICAL,SCADA / OT,Energy
+COOLING-MONITOR-01,CSE-08,CRITICAL,Server,Energy
+PLANT-CORP-GW,CSE-08,HIGH,Network,Energy
+ADMIN-WORKSTATION-08,CSE-08,LOW,Endpoint,Energy
