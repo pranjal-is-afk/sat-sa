@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>SAT-SA — Supervisory Analytics Tool for SOC Assessment</title>
+<meta name="description" content="An offline, explainable analytics engine that surfaces where reported SOC compliance doesn't match operational evidence. SIH26157.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0F1A;
+    --surface:#111826;
+    --surface-2:#0C111C;
+    --deep:#050810;
+    --text:#E7ECF3;
+    --text-soft:#96A3B8;
+    --line:#212C40;
+    --line-soft:#1A2436;
+    --accent:#4FA6E8;
+    --accent-strong:#7EC4FF;
+    --accent-fill:#2F8FE0;
+    --red:#E28A82;
+    --green:#7BC79A;
+    --grey:#5E6B80;
+    --radius:3px;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+  a{color:inherit;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    border-bottom:1px solid var(--line);
+    padding:20px 0;
+  }
+  .topbar .wrap{display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--serif); font-size:19px; font-weight:600; letter-spacing:0.2px;}
+  .brand .mark{
+    width:28px; height:28px; border:1.5px solid var(--text); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-family:var(--mono);
+    font-size:11px; font-weight:500; flex-shrink:0;
+  }
+  .topnav{display:flex; gap:28px; font-size:14px; color:var(--text-soft);}
+  .topnav a{text-decoration:none; border-bottom:1px solid transparent; transition:border-color .15s, color .15s;}
+  .topnav a:hover{border-color:var(--text-soft); color:var(--text);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:76px 0 64px;}
+  .hero .wrap{display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;}
+  .tags{display:flex; gap:8px; margin-bottom:22px; flex-wrap:wrap;}
+  .tag{
+    font-family:var(--mono); font-size:11px; color:var(--text-soft);
+    border:1px solid var(--line); padding:4px 9px; border-radius:2px; background:var(--surface);
+  }
+  h1{
+    font-family:var(--serif); font-weight:600; font-size:44px; line-height:1.14;
+    letter-spacing:-0.3px; margin-bottom:20px; max-width:620px; color:var(--text);
+  }
+  .hero p.lede{
+    font-size:17px; color:var(--text-soft); max-width:480px; margin-bottom:34px;
+  }
+  .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
+  .btn{
+    font-family:var(--sans); font-size:14.5px; font-weight:600; padding:13px 22px;
+    border-radius:var(--radius); text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    border:1px solid transparent; cursor:pointer; transition:transform .12s ease, background .15s ease, color .15s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--text); color:var(--deep);}
+  .btn-primary:hover{background:var(--accent-strong); color:var(--deep);}
+  .btn-secondary{background:transparent; color:var(--text); border-color:var(--line);}
+  .btn-secondary:hover{background:var(--surface); border-color:var(--text-soft);}
+  .cta-note{font-size:12.5px; color:var(--grey); font-family:var(--mono);}
+
+  /* ---------- finding card mockup (hero visual) ---------- */
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:4px;
+    padding:22px 22px 20px; box-shadow:0 1px 0 rgba(0,0,0,0.2);
+  }
+  .card-head{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;}
+  .card-id{font-family:var(--mono); font-size:11.5px; color:var(--grey);}
+  .sev{
+    font-family:var(--mono); font-size:10.5px; font-weight:500; color:var(--red);
+    border:1px solid var(--red); padding:2px 7px; border-radius:2px; letter-spacing:0.3px;
+  }
+  .card-title{font-family:var(--serif); font-size:17px; font-weight:600; margin-bottom:6px; line-height:1.3; color:var(--text);}
+  .card-reason{font-size:13.5px; color:var(--text-soft); margin-bottom:16px; line-height:1.5;}
+  .ev-row{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;}
+  .chip{
+    font-family:var(--mono); font-size:10.5px; color:var(--text-soft);
+    background:var(--surface-2); border:1px solid var(--line); padding:3px 8px; border-radius:2px;
+  }
+  .score-bar-row{display:flex; align-items:center; gap:10px; margin-bottom:8px;}
+  .score-label{font-size:11.5px; color:var(--text-soft); width:118px; flex-shrink:0;}
+  .score-track{flex:1; height:6px; background:var(--surface-2); border-radius:3px; overflow:hidden;}
+  .score-fill{height:100%; background:var(--accent);}
+  .score-pct{font-family:var(--mono); font-size:11px; color:var(--text-soft); width:32px; text-align:right;}
+  .card-foot{
+    display:flex; justify-content:space-between; align-items:center; margin-top:16px;
+    padding-top:14px; border-top:1px solid var(--line); font-family:var(--mono); font-size:10.5px; color:var(--grey);
+  }
+
+  /* ---------- section shell ---------- */
+  section{padding:56px 0;}
+  .rule{border-top:1px solid var(--line);}
+  .section-eyebrow{font-family:var(--mono); font-size:11.5px; color:var(--accent); margin-bottom:10px;}
+  h2{font-family:var(--serif); font-size:28px; font-weight:600; letter-spacing:-0.2px; margin-bottom:14px; max-width:620px; color:var(--text);}
+  .section-lede{font-size:15px; color:var(--text-soft); max-width:600px; margin-bottom:36px;}
+
+  /* ---------- gap concept pair ---------- */
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .concept{border:1px solid var(--line); border-radius:4px; padding:24px; background:var(--surface);}
+  .concept .k{font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:10px;}
+  .concept h3{font-family:var(--serif); font-size:19px; font-weight:600; margin-bottom:8px; color:var(--text);}
+  .concept p{font-size:14px; color:var(--text-soft);}
+
+  /* ---------- category list ---------- */
+  .cat-list{display:grid; grid-template-columns:1fr 1fr; column-gap:40px; row-gap:0; border-top:1px solid var(--line);}
+  .cat-item{display:flex; gap:14px; padding:16px 0; border-bottom:1px solid var(--line);}
+  .cat-num{font-family:var(--mono); font-size:12px; color:var(--grey); padding-top:2px; flex-shrink:0; width:22px;}
+  .cat-item h4{font-size:14.5px; font-weight:600; margin-bottom:3px; color:var(--text);}
+  .cat-item p{font-size:13px; color:var(--text-soft);}
+
+  /* ---------- try it steps ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .step{border-left:2px solid var(--text-soft); padding-left:16px;}
+  .step .k{font-family:var(--mono); font-size:11px; color:var(--grey); margin-bottom:8px;}
+  .step h4{font-size:15px; font-weight:600; margin-bottom:6px; color:var(--text);}
+  .step p{font-size:13.5px; color:var(--text-soft); margin-bottom:10px;}
+  .step a.inline{font-size:13px; color:var(--accent-strong); text-decoration:underline; text-underline-offset:2px;}
+
+  /* ---------- architecture strip ---------- */
+  .arch-strip{display:flex; align-items:stretch; gap:0; border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+  .arch-step{flex:1; padding:18px 16px; background:var(--surface); border-right:1px solid var(--line);}
+  .arch-step:last-child{border-right:none;}
+  .arch-step .k{font-family:var(--mono); font-size:10px; color:var(--grey); margin-bottom:6px;}
+  .arch-step h4{font-size:13.5px; font-weight:600; line-height:1.3; color:var(--text);}
+
+  /* ---------- final CTA band ---------- */
+  .band{background:var(--deep); color:var(--text); padding:52px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .band h2{color:var(--text); max-width:none;}
+  .band .section-eyebrow{color:var(--accent-strong);}
+  .band .section-lede{color:var(--text-soft); max-width:520px;}
+  .link-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:28px;}
+  .link-card{
+    border:1px solid var(--line); border-radius:3px; padding:14px 16px; text-decoration:none;
+    display:flex; justify-content:space-between; align-items:center; transition:border-color .15s, background .15s;
+    background:var(--surface-2);
+  }
+  .link-card:hover{border-color:var(--accent); background:var(--surface);}
+  .link-card .lc-label{font-size:13.5px; font-weight:600; color:var(--text);}
+  .link-card .lc-sub{font-family:var(--mono); font-size:10.5px; color:var(--grey); margin-top:2px;}
+  .link-card .lc-arrow{font-family:var(--mono); font-size:14px; color:var(--text-soft);}
+
+  /* ---------- footer ---------- */
+  footer{padding:28px 0; border-top:1px solid var(--line);}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  footer p{font-size:12.5px; color:var(--grey); font-family:var(--mono);}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .pair{grid-template-columns:1fr;}
+    .cat-list{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .arch-strip{flex-direction:column;}
+    .arch-step{border-right:none; border-bottom:1px solid var(--line);}
+    .arch-step:last-child{border-bottom:none;}
+    .link-grid{grid-template-columns:1fr;}
+    h1{font-size:34px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="mark">S</span>SAT-SA</div>
+    <nav class="topnav">
+      <a href="#what-it-catches">What it catches</a>
+      <a href="#categories">Detection</a>
+      <a href="#try-it">Try it</a>
+      <a href="#links">Links</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="tags">
+        <span class="tag">SIH26157</span>
+        <span class="tag">NTRO / NCIIPC</span>
+        <span class="tag">Fully Offline</span>
+      </div>
+      <h1>Finds the gap between what a SOC reports and what it actually did.</h1>
+      <p class="lede">SAT-SA ingests periodic SOC case data from Critical Sector Entities and surfaces execution gaps and negative space — with every finding traced back to the exact record and rule that flagged it.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://sat-sa-1.onrender.com/" target="_blank" rel="noopener">Open deployed prototype</a>
+        <a class="btn btn-secondary" href="https://drive.google.com/uc?export=download&id=112HpUVaS9Loqx2EIIlHOO3_teI1L_owL" download>Download sample dataset</a>
+      </div>
+      <p class="cta-note">// prototype runs in demo mode — sample data preloaded, no upload required</p>
+    </div>
+
+    <div class="card" aria-hidden="true">
+      <div class="card-head">
+        <span class="card-id">FINDING · F-000184</span>
+        <span class="sev">HIGH</span>
+      </div>
+      <div class="card-title">Critical alert closed with no escalation</div>
+      <p class="card-reason">High-severity alert on a critical asset was closed in 4 minutes vs. a peer median of 63 minutes. No escalation record. One line of investigation notes.</p>
+      <div class="ev-row">
+        <span class="chip">CASE-8832</span>
+        <span class="chip">CSE-04</span>
+        <span class="chip">rule: escalation-v1.3</span>
+        <span class="chip">confidence 0.96</span>
+      </div>
+      <div class="score-bar-row"><span class="score-label">Escalation gaps</span><div class="score-track"><div class="score-fill" style="width:31%"></div></div><span class="score-pct">31%</span></div>
+      <div class="score-bar-row"><span class="score-label">Unremediated repeats</span><div class="score-track"><div class="score-fill" style="width:24%"></div></div><span class="score-pct">24%</span></div>
+      <div class="score-bar-row"><span class="score-label">Fast closures</span><div class="score-track"><div class="score-fill" style="width:18%"></div></div><span class="score-pct">18%</span></div>
+      <div class="card-foot">
+        <span>ENTITY RISK 78/100</span>
+        <span>recommend: manual review</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="rule"></div>
+
+<section id="what-it-catches">
+  <div class="wrap">
+    <div class="section-eyebrow">// the core idea</div>
+    <h2>Two things dashboards never show you.</h2>
+    <p class="section-lede">Most compliance tools look for what's unusual. SAT-SA is built to look for what's missing — because in a SOC, what's missing is usually the thing that gets covered up first.</p>
+    <div class="pair">
+      <div class="concept">
+        <div class="k">01 · EXECUTION GAP</div>
+        <h3>Reported ≠ real</h3>
+        <p>A control is documented as working, but the underlying case records say otherwise — a "policy" that exists on paper only.</p>
+      </div>
+      <div class="concept">
+        <div class="k">02 · NEGATIVE SPACE</div>
+        <h3>Evidence that should exist, and doesn't</h3>
+        <p>A critical asset marked "monitored" that has produced zero telemetry for three weeks. Not an anomaly — an absence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<section id="categories">
+  <div class="wrap">
+    <div class="section-eyebrow">// detection engine</div>
+    <h2>Eight explainable gap categories.</h2>
+    <p class="section-lede">Every category is deterministic and versioned where possible — statistics and rules first, machine learning only as an optional pattern-discovery layer on top.</p>
+    <div class="cat-list">
+      <div class="cat-item"><span class="cat-num">01</span><div><h4>No escalation on a critical alert</h4><p>Checked against a severity × asset-criticality escalation matrix.</p></div></div>
+      <div class="cat-item"><span class="cat-num">02</span><div><h4>Unusually fast closure</h4><p>Compared to peer-group median and IQR, not a flat threshold.</p></div></div>
+      <div class="cat-item"><span class="cat-num">03</span><div><h4>Weak or boilerplate investigation</h4><p>Scored on completeness, evidence count, and root-cause quality.</p></div></div>
+      <div class="cat-item"><span class="cat-num">04</span><div><h4>Repeat alerts, no remediation</h4><p>Repeat ratio per asset — recurrence without a fix on record.</p></div></div>
+      <div class="cat-item"><span class="cat-num">05</span><div><h4>Templated case narratives</h4><p>TF-IDF similarity across a CSE's investigation notes, offline.</p></div></div>
+      <div class="cat-item"><span class="cat-num">06</span><div><h4>Missing telemetry coverage</h4><p>A "monitored" critical asset with near-zero observed events.</p></div></div>
+      <div class="cat-item"><span class="cat-num">07</span><div><h4>Peer-group deviation</h4><p>Risk-adjusted using median/IQR — controls for size and criticality mix.</p></div></div>
+      <div class="cat-item"><span class="cat-num">08</span><div><h4>Cross-table inconsistency</h4><p>Escalations, closures, and timelines checked for internal coherence.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<section id="try-it">
+  <div class="wrap">
+    <div class="section-eyebrow">// hands-on</div>
+    <h2>Try it yourself.</h2>
+    <p class="section-lede">The deployed prototype runs in demo mode against a synthetic dataset — no real entity data exists or is used anywhere in this project.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="k">STEP 1</div>
+        <h4>Open the prototype</h4>
+        <p>Loads with sample data pre-seeded — nothing to upload to look around.</p>
+        <a class="inline" href="https://sat-sa-1.onrender.com" target="_blank" rel="noopener">Open prototype →</a>
+      </div>
+      <div class="step">
+        <div class="k">STEP 2</div>
+        <h4>Inspect the ranked queue</h4>
+        <p>Entities are ranked by a risk score that always shows its contributing factors.</p>
+      </div>
+      <div class="step">
+        <div class="k">STEP 3</div>
+        <h4>Download the raw dataset</h4>
+        <p>Want to see the data shape or run it through your own pipeline? Grab the CSVs.</p>
+        <a class="inline" href="https://drive.google.com/uc?export=download&id=112HpUVaS9Loqx2EIIlHOO3_teI1L_owL" download>Download sample data →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-eyebrow">// architecture</div>
+    <h2>Four layers, entirely offline.</h2>
+    <div class="arch-strip">
+      <div class="arch-step"><div class="k">01</div><h4>Data submission</h4></div>
+      <div class="arch-step"><div class="k">02</div><h4>Validation &amp; normalization</h4></div>
+      <div class="arch-step"><div class="k">03</div><h4>PS+ analytics engine</h4></div>
+      <div class="arch-step"><div class="k">04</div><h4>Supervisory layer</h4></div>
+    </div>
+  </div>
+</section>
+
+<div class="band" id="links">
+  <div class="wrap">
+    <div class="section-eyebrow">// everything in one place</div>
+    <h2>Links</h2>
+    <p class="section-lede">Prototype, dataset, source, and the project walkthrough.</p>
+    <div class="link-grid">
+      <a class="link-card" href="https://sat-sa-1.onrender.com" target="_blank" rel="noopener">
+        <div><div class="lc-label">Deployed prototype</div><div class="lc-sub">live demo, sample data preloaded</div></div>
+        <span class="lc-arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://drive.google.com/uc?export=download&id=112HpUVaS9Loqx2EIIlHOO3_teI1L_owL" download>
+        <div><div class="lc-label">Sample dataset</div><div class="lc-sub">synthetic CSVs, ground-truth labeled</div></div>
+        <span class="lc-arrow">↓</span>
+      </a>
+      <a class="link-card" href="https://github.com/pranjal-is-afk/sat-sa" target="_blank" rel="noopener">
+        <div><div class="lc-label">Source code</div><div class="lc-sub">github repository</div></div>
+        <span class="lc-arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://drive.google.com/file/d/1D2TQ49OSJ56jtowoXO1K-Sz2fQyeZ9lA/view?usp=drive_link" target="_blank" rel="noopener">
+        <div><div class="lc-label">Project video</div><div class="lc-sub">10-minute walkthrough</div></div>
+        <span class="lc-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>TEAM ALPHIECODER — SIH26157</p>
+    <p>BUILT OFFLINE. BUILT EXPLAINABLE.</p>
+  </div>
+</footer>
+
+</body>
+</html>
